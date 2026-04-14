@@ -515,6 +515,17 @@
     Object.values(fields).forEach(input => input.addEventListener('input', updatePreview));
 
     fillInputs(cloneData(exampleData));
+ const response = await fetch(WEB_APP_URL, {
+    method: 'POST',
+    mode: 'no-cors', // Adicione isso se o erro persistir, mas o ideal é o 'cors'
+    headers: {
+        'Content-Type': 'text/plain;charset=utf-8', // Engana o CORS para evitar bloqueio
+    },
+    body: JSON.stringify(payload)
+});
+
+// Nota: Se usar 'no-cors', o navegador não deixa ler a URL de resposta por segurança.
+// Se precisar da URL de volta, mantenha o modo padrão e garanta que o GAS está como "Anyone".
   </script>
 </body>
 </html>
